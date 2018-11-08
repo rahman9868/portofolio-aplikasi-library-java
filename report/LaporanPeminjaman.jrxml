@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LaporanPeminjaman" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13cd299b-362d-4427-bbe1-d6d2e8e0db24">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     peminjaman.`kode_anggota` AS peminjaman_kode_anggota,
+     peminjaman.`kode_buku` AS peminjaman_kode_buku,
+     peminjaman.`tgl_pinjam` AS peminjaman_tgl_pinjam,
+     peminjaman.`tgl_kembali` AS peminjaman_tgl_kembali,
+     peminjaman.`status` AS peminjaman_status
+FROM
+     `peminjaman` peminjaman]]>
+	</queryString>
+	<field name="peminjaman_kode_anggota" class="java.lang.String"/>
+	<field name="peminjaman_kode_buku" class="java.lang.String"/>
+	<field name="peminjaman_tgl_pinjam" class="java.sql.Date"/>
+	<field name="peminjaman_tgl_kembali" class="java.sql.Date"/>
+	<field name="peminjaman_status" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="202" y="7" width="150" height="20" uuid="ed4a0e77-1f10-40d5-8f2d-51d8ebd7e6b6"/>
+				<textElement>
+					<font fontName="Serif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN PEMINJAMAN]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="29" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="e4703bd2-2673-4ae2-9cc3-0e629eeca93a"/>
+				<text><![CDATA[Kode Anggota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="2" width="100" height="20" uuid="b67d8c0f-8889-47da-8740-e55b93b0d4fb"/>
+				<text><![CDATA[Kode Buku]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="241" y="2" width="100" height="20" uuid="e6a3fa1b-6278-4ab9-b967-5f3fe0e35717"/>
+				<text><![CDATA[Tgl Pinjam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="366" y="2" width="100" height="20" uuid="108e84dd-cdff-40b6-be47-9df9f72944be"/>
+				<text><![CDATA[Tgl Kembali]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="488" y="2" width="100" height="20" uuid="8f88707a-51c2-44d1-99be-50f5ec81825f"/>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="4" width="100" height="20" uuid="57ceaaa6-99e0-4639-ab95-8f7ea33a2f9c"/>
+				<textFieldExpression><![CDATA[$F{peminjaman_kode_anggota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="115" y="7" width="100" height="20" uuid="98961adf-e480-430e-a604-a3ddb36b17d0"/>
+				<textFieldExpression><![CDATA[$F{peminjaman_kode_buku}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="241" y="7" width="100" height="20" uuid="dbad5f77-da52-47a5-9699-3b9c1a175a75"/>
+				<textFieldExpression><![CDATA[$F{peminjaman_tgl_pinjam}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="366" y="7" width="100" height="20" uuid="c63de3b8-3607-4788-b3a3-d4c810ba1c52"/>
+				<textFieldExpression><![CDATA[$F{peminjaman_tgl_kembali}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="488" y="7" width="100" height="20" uuid="1f9b0b8f-aeb9-488b-be52-d7db0847846f"/>
+				<textFieldExpression><![CDATA[$F{peminjaman_status}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

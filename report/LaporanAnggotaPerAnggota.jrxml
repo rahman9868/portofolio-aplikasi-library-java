@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LaporanAnggotaPerAnggota" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f39257c4-17c1-486a-b8fb-659448c41686">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="anggota" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Chairul R"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     anggota.`kode_anggota` AS anggota_kode_anggota,
+     anggota.`nama_anggota` AS anggota_nama_anggota,
+     anggota.`alamat` AS anggota_alamat,
+     anggota.`jekel` AS anggota_jekel,
+     anggota.`tgl_lahir` AS anggota_tgl_lahir
+FROM
+     `anggota` anggota
+WHERE anggota.`nama_anggota`= $P{anggota}]]>
+	</queryString>
+	<field name="anggota_kode_anggota" class="java.lang.String"/>
+	<field name="anggota_nama_anggota" class="java.lang.String"/>
+	<field name="anggota_alamat" class="java.lang.String"/>
+	<field name="anggota_jekel" class="java.lang.String"/>
+	<field name="anggota_tgl_lahir" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="187" y="16" width="230" height="33" backcolor="#6633FF" uuid="7602562f-eca7-45e7-9d97-243d05eb8d2b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Baskerville Old Face" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Laporan Anggota Per Anggota]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="11" y="2" width="36" height="20" backcolor="#9999FF" uuid="9140835f-cf55-4d31-aaa0-99e70f1f8d73"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kode]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="75" y="2" width="157" height="20" backcolor="#9999FF" uuid="6da4a74e-5ad2-4b51-8051-8d5e115fa1f6"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Anggota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="258" y="2" width="116" height="20" backcolor="#9999FF" uuid="41d7e0d1-37df-4565-8bfd-a78848cf92a1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Alamat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="397" y="2" width="45" height="20" backcolor="#9999FF" uuid="2450a526-52f1-4462-9680-6c4916c32d00"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jekel]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="462" y="2" width="83" height="20" backcolor="#9999FF" uuid="8d868654-4f11-4482-85bb-6764d0c6f673"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tgl Lahir]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="43" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="11" y="23" width="36" height="20" backcolor="#CCCCFF" uuid="42847928-e6f6-4e31-9ca9-14f2d0816762"/>
+				<textFieldExpression><![CDATA[$F{anggota_kode_anggota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="75" y="23" width="157" height="20" backcolor="#CCCCFF" uuid="456daecc-1a0d-4e20-8cf5-b46a810b8c1a"/>
+				<textFieldExpression><![CDATA[$F{anggota_nama_anggota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="258" y="23" width="116" height="20" backcolor="#CCCCFF" uuid="c067e34f-990c-4ec5-a994-a32925c9cc2e"/>
+				<textFieldExpression><![CDATA[$F{anggota_alamat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="397" y="23" width="45" height="20" backcolor="#CCCCFF" uuid="5d100fc4-42be-4fbd-9f7e-cb6277933803"/>
+				<textFieldExpression><![CDATA[$F{anggota_jekel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="462" y="23" width="83" height="20" backcolor="#CCCCFF" uuid="a5a6892b-c45a-40de-bf9a-29655d2bf67a"/>
+				<textFieldExpression><![CDATA[$F{anggota_tgl_lahir}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

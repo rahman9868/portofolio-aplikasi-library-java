@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LaporanPeminjamanBulan" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13cd299b-362d-4427-bbe1-d6d2e8e0db24">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="bulan" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[01]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tahun" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[2010]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     buku.`judul` AS buku_judul,
+     anggota.`nama_anggota` AS anggota_nama_anggota,
+     peminjaman.`kode_anggota` AS peminjaman_kode_anggota,
+     peminjaman.`kode_buku` AS peminjaman_kode_buku,
+     peminjaman.`tgl_pinjam` AS peminjaman_tgl_pinjam,
+     peminjaman.`tgl_kembali` AS peminjaman_tgl_kembali
+FROM
+     `peminjaman` peminjaman INNER JOIN `anggota` anggota ON peminjaman.`kode_anggota` = anggota.`kode_anggota`
+     INNER JOIN `buku` buku ON peminjaman.`kode_buku` = buku.`kode_buku`
+WHERE MONTH(peminjaman.`tgl_pinjam`) = $P{bulan} AND
+	YEAR(peminjaman.`tgl_pinjam`) = $P{tahun}]]>
+	</queryString>
+	<field name="buku_judul" class="java.lang.String"/>
+	<field name="anggota_nama_anggota" class="java.lang.String"/>
+	<field name="peminjaman_kode_anggota" class="java.lang.String"/>
+	<field name="peminjaman_kode_buku" class="java.lang.String"/>
+	<field name="peminjaman_tgl_pinjam" class="java.sql.Date"/>
+	<field name="peminjaman_tgl_kembali" class="java.sql.Date"/>
+	<variable name="peminjaman_kode_anggota_1" class="java.lang.Integer" resetType="Group" resetGroup="anggota" calculation="Count">
+		<variableExpression><![CDATA[$F{peminjaman_kode_anggota}]]></variableExpression>
+	</variable>
+	<group name="anggota">
+		<groupExpression><![CDATA[$F{peminjaman_kode_anggota}]]></groupExpression>
+		<groupHeader>
+			<band height="92">
+				<staticText>
+					<reportElement mode="Opaque" x="10" y="72" width="100" height="20" backcolor="#9933FF" uuid="43b55a30-6917-4066-a700-dd4753a7e46a"/>
+					<text><![CDATA[Kode Buku]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="133" y="72" width="100" height="20" backcolor="#9933FF" uuid="fcdbce39-c392-4564-b9d7-60334b717071"/>
+					<text><![CDATA[Judul Buku]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="313" y="72" width="100" height="20" backcolor="#9933FF" uuid="48210846-7502-48e4-aaf1-06aacbeea0c5"/>
+					<text><![CDATA[Tgl Pinjam]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="434" y="72" width="100" height="20" backcolor="#9933FF" uuid="0c0fa607-00ef-428c-92cc-187847cc4754"/>
+					<text><![CDATA[Tgl Kembali]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="133" y="14" width="180" height="20" uuid="b60f13a1-0b5a-4571-8253-734c7afc20e3"/>
+					<textFieldExpression><![CDATA[$F{peminjaman_kode_anggota}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="133" y="44" width="180" height="20" uuid="3a7cfbe5-eba3-4c10-ad15-fc8fd4296dae"/>
+					<textFieldExpression><![CDATA[$F{anggota_nama_anggota}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="10" y="14" width="100" height="20" uuid="5080c1c7-eeec-4a51-8768-f2abe979f7c4"/>
+					<text><![CDATA[Kode Anggota]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="44" width="100" height="20" uuid="1843665f-4140-4652-afd6-cb7c178509a3"/>
+					<text><![CDATA[Nama Anggota]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="27">
+				<line>
+					<reportElement x="0" y="26" width="555" height="1" uuid="814843a0-09b7-41f6-be0b-b6190c1bae49"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="149" y="9" width="264" height="20" uuid="ed4a0e77-1f10-40d5-8f2d-51d8ebd7e6b6"/>
+				<textElement>
+					<font fontName="Serif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN PEMINJAMAN PER ANGGOTA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="63" splitType="Stretch">
+			<textField>
+				<reportElement x="172" y="15" width="100" height="20" uuid="b83e33bb-9577-4577-95ac-b30acc4ec8f6"/>
+				<textFieldExpression><![CDATA[$P{bulan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="394" y="15" width="100" height="20" uuid="ba650759-3a06-4317-af48-80d654a43bda"/>
+				<textFieldExpression><![CDATA[$P{tahun}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="313" y="15" width="81" height="20" uuid="6a652a3c-b029-44c5-8e8e-d76b6c5f1282"/>
+				<text><![CDATA[Tahun]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="15" width="100" height="20" uuid="194e499a-699b-4632-839f-66ca9990daa5"/>
+				<text><![CDATA[Bulan]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="7" width="100" height="20" uuid="3c8c90ab-f973-4e7d-aebf-c08a2756f7fe"/>
+				<textFieldExpression><![CDATA[$F{peminjaman_kode_buku}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="133" y="7" width="100" height="20" uuid="79f64831-336f-463c-86ec-592aadd46a53"/>
+				<textFieldExpression><![CDATA[$F{buku_judul}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="313" y="7" width="100" height="20" uuid="2eacdc5c-a608-4009-a8f2-76f88fda265d"/>
+				<textFieldExpression><![CDATA[$F{peminjaman_tgl_pinjam}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="434" y="7" width="100" height="20" uuid="de440dff-7728-4da2-bb86-2fbfc70eefda"/>
+				<textFieldExpression><![CDATA[$F{peminjaman_tgl_kembali}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

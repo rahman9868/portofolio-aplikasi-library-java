@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LaporanBukuPerPengarang" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="159e7732-69b0-44e9-bc59-0045a3cb74a5">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="pengarang" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Chairul R"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     buku.`kode_buku` AS buku_kode_buku,
+     buku.`judul` AS buku_judul,
+     buku.`pengarang` AS buku_pengarang,
+     buku.`penerbit` AS buku_penerbit,
+     buku.`tahun_terbit` AS buku_tahun_terbit
+FROM
+     `buku` buku
+WHERE buku.`pengarang` = $P{pengarang}]]>
+	</queryString>
+	<field name="buku_kode_buku" class="java.lang.String"/>
+	<field name="buku_judul" class="java.lang.String"/>
+	<field name="buku_pengarang" class="java.lang.String"/>
+	<field name="buku_penerbit" class="java.lang.String"/>
+	<field name="buku_tahun_terbit" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="218" y="25" width="231" height="32" backcolor="#6633FF" uuid="137dd3bb-3a9c-4548-a9df-d6bd3fd12fdb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Baskerville Old Face" size="16"/>
+				</textElement>
+				<text><![CDATA[Laporan Buku Per Pengarang]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="10" y="2" width="100" height="20" backcolor="#6666FF" uuid="031b7eed-5277-4ade-b748-d05408835434"/>
+				<text><![CDATA[Kode]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="142" y="2" width="100" height="20" backcolor="#6666FF" uuid="5fe3ed5b-2a4f-4d0b-89ed-8fdfa14a47c9"/>
+				<text><![CDATA[Judul]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="258" y="2" width="100" height="20" backcolor="#6666FF" uuid="9751fb94-0cdb-485d-83cd-e0ce9a111fc8"/>
+				<text><![CDATA[Pengarang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="378" y="2" width="100" height="20" backcolor="#6666FF" uuid="1d919f65-cc26-4702-b159-e4f6e0bc88e1"/>
+				<text><![CDATA[Penerbit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="489" y="2" width="66" height="20" backcolor="#6666FF" uuid="fe1a6e84-e7ca-4391-91aa-874a8c9b17f5"/>
+				<text><![CDATA[Tahun Terbit]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="49" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="10" y="29" width="100" height="20" backcolor="#9999FF" uuid="b2563572-ac84-4845-abce-523e3158f8a0"/>
+				<textFieldExpression><![CDATA[$F{buku_kode_buku}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="142" y="29" width="100" height="20" backcolor="#9999FF" uuid="3e9f683f-80a4-4975-a598-dfbfb42bbc0b"/>
+				<textFieldExpression><![CDATA[$F{buku_judul}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="258" y="29" width="100" height="20" backcolor="#9999FF" uuid="ebfd3cfc-e6e0-416f-97b6-1540f1b9e2a5"/>
+				<textFieldExpression><![CDATA[$F{buku_pengarang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="378" y="29" width="100" height="20" backcolor="#9999FF" uuid="a4f3860f-3b91-4a97-8d59-ae12e19997c1"/>
+				<textFieldExpression><![CDATA[$F{buku_penerbit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="489" y="29" width="66" height="20" backcolor="#9999FF" uuid="61e5bcb0-7155-4be9-983b-7372a7742fb8"/>
+				<textFieldExpression><![CDATA[$F{buku_tahun_terbit}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
